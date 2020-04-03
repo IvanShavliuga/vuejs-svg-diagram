@@ -3,12 +3,15 @@
   version 0.0.1
   https://github.com/IvanShavliuga/vuejs-svg-diagram
 */
-
+.container {
+  display: flex;
+  justify-content: center;
+}
 .canvas {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 800px;
+  max-width: 400px;
 }
 .unit {
   fill: none;
@@ -54,9 +57,10 @@
   stroke-dasharray: 40 100;
   stroke-dashoffset: -60;
 }
-        .legend {
-  max-width: 250px;
+.legend {
+  max-width: 350px;
   margin-left: 30px;
+  margin-top: 60px;
 }
 
 .title {  
@@ -88,8 +92,7 @@
 .caption-item:hover {
   opacity: 0.8;
 }
-.caption-item::before {
-  content: ""; 
+.circle {
   position: absolute;
   top: 0;
   left: 0;
@@ -98,14 +101,3 @@
   border-radius: 8px;
 }
 
-.caption-item:nth-child(1)::before {
-  background-color: #86cfa3;
-}
-
-.caption-item:nth-child(2)::before {
-  background-color: #a2c6e0;
-}
-
-.caption-item:nth-child(3)::before {
-  background-color: #ffc7ec;
-}
