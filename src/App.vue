@@ -11,6 +11,7 @@
                    :class="cssclass" 
                    :style="stylede(c)"
                    :key="k"
+                   :data-dct="c.value"
                    @mouseover="moveselect(c,true)"
                    @mouseleave="moveselect(c,false)"></circle>
            
@@ -21,8 +22,7 @@
             <ul class="caption-list">
                <li class="caption-item" v-for="(c,k) in units" 
                    :style="(c.select)?'font-weight:bold;':'font-weight:normal;'">
-                     <i class="circle" :style="styleel(c)"></i>#{{c.id}} {{c.title}}</li>
-               
+                     <i class="circle" :style="styleel(c)" @click="(c.select)?moveselect(c,false):moveselect(c,true)"></i>#{{c.id}} {{c.title}}</li>              
             </ul>
     </div>
 </div>
@@ -30,8 +30,12 @@
    <div>
       <form>
           <div  v-for="(c,k) in units">
+              <input type="checkbox" name="select" v-model="c.select"> 
               <span>#{{c.id}}</span>
-              <input type="text" name="color" v-model="c.color">     
+              <input type="text" name="color" v-model="c.color" :style="'background-color:'+c.color+';color:#fff'">
+              <input type="text" name="dashoffset" v-model="c.dashoffset"> 
+              <input type="text" name="dasharray" v-model="c.dasharray"> 
+              <input type="text" name="title" v-model="c.title">  
           </div>
       </form>
    </div>
@@ -53,6 +57,7 @@ export default {
               color:"#86cfa3",
               dashoffset:"0",
               dasharray:"8 100",
+              value:30,
               radius:10,
               select:false,
               zindex:1         
@@ -61,6 +66,7 @@ export default {
               title:"соседи",
               color:"#ffc7ec",
               dashoffset:"-8",
+              value:10,
               dasharray:"11 100",
               radius:10,
               select:false,
@@ -70,6 +76,7 @@ export default {
               title:"отсутствие рабочего места",
               color:"#a2c6e0",
               dashoffset:"-19",
+              value:10,
               dasharray:"11 100",
               radius:10,
               select:false,
@@ -80,6 +87,7 @@ export default {
               color:"#adffd8",
               dashoffset:"-30",
               dasharray:"14 100",
+              value:5,
               radius:10,
               select:false,
               zindex:1           
@@ -90,6 +98,7 @@ export default {
               dashoffset:"-44",
               dasharray:"11 100",
               radius:10,
+              value:5,
               select:false,
               zindex:1           
            },{
@@ -97,6 +106,7 @@ export default {
               title:"неудобная коммуникация с коллегами",
               color:"#f2c48f",
               dashoffset:"-55",
+              value:30,
               dasharray:"5 100",
               radius:10,
               select:false,
@@ -106,17 +116,19 @@ export default {
               title:"много ленюсь",
               color:"#e3bfe2",
               dashoffset:"-60",
+              value:10,
               dasharray:"4 100",
               radius:10,
               select:false,
               zindex:1           
-           }]
+           }],
+           summ:0
                   
        }   
    },
    methods: {
        stylede(u) {
-           return "stroke-dashoffset: "+u.dashoffset+";"+"stroke: "+u.color+"; stroke-dasharray: "+u.dasharray+"; z-index"+u.zindex;
+           return "stroke-dashoffset: "+u.dashoffset+";"+"stroke: "+u.color+"; stroke-dasharray:"+u.dasharray+"; z-index"+u.zindex;
        },
        styleel(u) {
            return "background-color: "+u.color; 
@@ -131,10 +143,9 @@ export default {
                this.units[u.id-1].select=false;
                this.select="";
            }        
-       }  
+       }
    
    }
 
 }
-
-</script>260
+</script>

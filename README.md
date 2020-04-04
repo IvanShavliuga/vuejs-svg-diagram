@@ -5,3 +5,4 @@ Vue.js + SVG + diagram
 
 ## Start work to 0.0.1 
 
+<img width="600" src="https://github.com/IvanShavliuga/vuejs-svg-diagram/blob/master/Screenshot.png">
