@@ -1,4 +1,5 @@
 <template>
+<div>
 <div class="container">
     <div class="canvas">
         <svg class="chart" width="500" height="500" viewBox="0 0 50 50">
@@ -24,6 +25,17 @@
                
             </ul>
     </div>
+</div>
+<div class="container">
+   <div>
+      <form>
+          <div  v-for="(c,k) in units">
+              <span>#{{c.id}}</span>
+              <input type="text" name="color" v-model="c.color">     
+          </div>
+      </form>
+   </div>
+</div>
 </div>
 </template>
 <script>
