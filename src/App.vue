@@ -3,7 +3,7 @@
 <div class="container">
     <div class="canvas">
         <svg class="chart" width="500" height="500" viewBox="0 0 50 50">
-            <text :x="cx" :y="cy" font-size="3px">{{select}}</text>
+            <text :x="cx" :y="cy" font-size="2px">{{select}}</text>
             <circle v-for="(c,k) in units" 
                    :r="c.radius+c.select*0.5" 
                    :cx="cx" 
@@ -12,19 +12,12 @@
                    :style="stylede(c)"
                    :key="k"
                    :data-dct="c.value"
-                   @mouseover="moveselect(c,true)"
-                   @mouseleave="moveselect(c,false)"></circle>
+                   @mouseover="movesel(c,true)"
+                   @mouseleave="movesel(c,false)"></circle>
            
         </svg>
     </div>  
-        <div class="legend">
-            <p class="title">Что мешает во время работы дома?</p>    
-            <ul class="caption-list">
-               <li class="caption-item" v-for="(c,k) in units" 
-                   :style="(c.select)?'font-weight:bold;':'font-weight:normal;'">
-                     <i class="circle" :style="styleel(c)" @click="(c.select)?moveselect(c,false):moveselect(c,true)"></i>#{{c.id}} {{c.title}}</li>              
-            </ul>
-    </div>
+    <app-legend :units="units" @style="styleel" @select="moveselect"></app-legend>    
 </div>
 <div class="container">
    <div>
@@ -43,6 +36,7 @@
 </div>
 </template>
 <script>
+import Legend from "./Legend.vue";
 export default {
    data () {
        return {
@@ -133,18 +127,31 @@ export default {
        styleel(u) {
            return "background-color: "+u.color; 
        },
-       moveselect(u,enter){
-           if(enter) {
-               this.units[u.id-1].zindex+=10;
-               this.units[u.id-1].select=true;
-               this.select="#"+u.id;
+       moveselect(obj){
+           if(obj.unit.select) {
+               this.units[obj.unit.id-1].zindex+=10;
+               this.units[obj.unit.id-1].select=true;
+               this.select=obj.selecttext;
            }else{
-               this.units[u.id-1].zindex-=10;
-               this.units[u.id-1].select=false;
-               this.select="";
+               this.units[obj.unit.id-1].zindex-=10;
+               this.units[obj.unit.id-1].select=false;
+               this.select=obj.selecttext;
            }        
+       },
+       movesel(obj, select) {
+           if(select) {
+               this.units[obj.id-1].zindex+=10;
+               this.units[obj.id-1].select=true;
+               this.select="#"+obj.id;
+           }else{
+               this.units[obj.id-1].zindex-=10;
+               this.units[obj.id-1].select=false;
+               this.select="";
+           } 
        }
-   
+   },
+   components: {
+       appLegend:Legend   
    }
 
 }

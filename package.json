@@ -1,7 +1,7 @@
 {
-  "name": "Vue.js diagram",
+  "name": "Vuejsdiagram",
   "description": "A Vue.js project. Vue.js diagram",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Ivan Ivanov (Shavliuga)",
   "email": "iva.drakon.nov@gmail.com",
   "scripts": {
@@ -33,6 +33,6 @@
     "vue-style-loader": "^3.0.3",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack-dev-server": "^2.1.11"
   }
 }
