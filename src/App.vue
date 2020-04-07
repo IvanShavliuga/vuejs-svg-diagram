@@ -2,6 +2,7 @@
 <div>
 <div class="container">
     <app-circle :units="units" @style="styleel" @select="moveselect"></app-circle>
+    <app-bar :units="units" @style="styleel" @select="moveselect"></app-bar>
     <app-legend :units="units" @style="styleel" @select="moveselect"></app-legend>    
 </div>
 <div class="container">
@@ -18,11 +19,15 @@
       </form>
    </div>
 </div>
+<div class="container">
+   
+</div>
 </div>
 </template>
 <script>
 import Legend from "./Legend.vue";
 import Circle from "./Circle.vue";
+import Bar from "./Bar.vue";
 export default {
    data () {
        return {
@@ -140,7 +145,8 @@ export default {
    },
    components: {
        appLegend:Legend,
-       appCircle:Circle   
+       appCircle:Circle,
+       appBar:Bar  
    }
 
 }
