@@ -1,7 +1,7 @@
 {
   "name": "Vuejsdiagram",
   "description": "A Vue.js project. Vue.js diagram",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Ivan Ivanov (Shavliuga)",
   "email": "iva.drakon.nov@gmail.com",
   "scripts": {
