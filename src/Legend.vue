@@ -36,7 +36,6 @@ export default {
                select="";
                c.select=false;
            }  
-           console.log("select: "+c.select+" b="+b+" select"+select)
            this.$emit("select", {unit:c,select:b,selecttext:select});
                      
        }

@@ -1,22 +1,7 @@
 <template>
 <div>
 <div class="container">
-    <div class="canvas">
-        <svg class="chart" width="500" height="500" viewBox="0 0 50 50">
-            <text :x="cx" :y="cy" font-size="2px">{{select}}</text>
-            <circle v-for="(c,k) in units" 
-                   :r="c.radius+c.select*0.5" 
-                   :cx="cx" 
-                   :cy="cy" 
-                   :class="cssclass" 
-                   :style="stylede(c)"
-                   :key="k"
-                   :data-dct="c.value"
-                   @mouseover="movesel(c,true)"
-                   @mouseleave="movesel(c,false)"></circle>
-           
-        </svg>
-    </div>  
+    <app-circle :units="units" @style="styleel" @select="moveselect"></app-circle>
     <app-legend :units="units" @style="styleel" @select="moveselect"></app-legend>    
 </div>
 <div class="container">
@@ -37,6 +22,7 @@
 </template>
 <script>
 import Legend from "./Legend.vue";
+import Circle from "./Circle.vue";
 export default {
    data () {
        return {
@@ -44,6 +30,8 @@ export default {
            select:"",
            cx: "50%",
            cy: "50%",
+           ctx: "45%",
+           cty: "53%",
            cssclass:"unit",
            units: [{
               id:1,
@@ -151,7 +139,8 @@ export default {
        }
    },
    components: {
-       appLegend:Legend   
+       appLegend:Legend,
+       appCircle:Circle   
    }
 
 }
